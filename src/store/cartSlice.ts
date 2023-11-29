@@ -1,9 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { CartItem } from "../typesModels";
-
-const initialState = {
-  cart: [] as CartItem[],
+import { RootState } from "./store";
+interface cartState{
+  cart:CartItem[];
+}
+const initialState:cartState = {
+  cart: [] ,
 
   /// cart: [
   //   {
@@ -50,6 +53,8 @@ const cartSlice = createSlice({
         item.quantity--;
         item.totalPrice = item.quantity * item.unitPrice;
       }
+
+      if(item?.quantity==0) cartSlice.caseReducers.deleteItem(state,action);
     },
     clearCart: (state) => {
       state.cart = [];
@@ -66,3 +71,10 @@ export const {
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
+
+
+export const getCurrentQuantityById = (id: number) => (state: RootState) => {
+  // Access state.cart directly, not state.cart.cart
+  const item = state.cart.cart.find((item) => item.pizzaId === id);
+  return item?.quantity ?? 0;
+};

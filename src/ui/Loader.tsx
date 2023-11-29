@@ -1,8 +1,28 @@
-import { Spinner } from "@material-tailwind/react";
-//<Spinner className="h-16 w-16 text-ae4d12/50" />
- function Loader() {
-  return <div>
-   <Spinner className="h-16 w-16 text-ae4d12/50" />
-  </div>;
+import React, { useState } from 'react';
+import ClipLoader from 'react-spinners/ClipLoader';
+interface LoaderProps{
+  isLoading:boolean
 }
+const Loader: React.FC<LoaderProps> = ({ isLoading }) => {
+  const override = {
+    display: 'block',
+    margin: '0 auto',
+    borderColor: 'red',
+     // Change this color to your desired value
+  };
+
+  return (
+    <div className='sweet-loading w-full h-full fixed  flex items-center justify-center '>
+      <ClipLoader
+        color='#ffffff' // Initial color (you can change this dynamically)
+        loading={isLoading}
+        cssOverride={override}
+        size={150}
+        aria-label='Loading Spinner'
+        data-testid='loader'
+      />
+    </div>
+  );
+};
+
 export default Loader;

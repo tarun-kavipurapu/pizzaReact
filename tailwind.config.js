@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 // eslint-disable-next-line
-const withMT = require("@material-tailwind/react/utils/withMT");
-export default withMT({
+export default{
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
@@ -12,6 +11,9 @@ export default withMT({
       fontSize: {
         huge: ['80rem', { lineHeight: '1' }],
       },
+      letterSpacing: {
+        widest: '0.3rem'
+      },
       height: {
         screen: '100dvh',
       },
@@ -21,4 +23,4 @@ export default withMT({
     },
   },
   plugins: [],
-});
+}

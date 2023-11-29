@@ -14,7 +14,7 @@ const Menu = () => {
   const { data: menu } = apiResponse || { status: '', data: [] };
   // console.log(menu);
   return (
-    <div>
+    <div className='content-start'>
       {
         menu.map((item)=>{  
           return(
